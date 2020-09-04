@@ -76,13 +76,16 @@ for epi in links:
     else:
         continue
 
-episode = 1
 for ep in eps:
     print(ep)
     driver.get(ep)
-    title = driver.find_element_by_id('infotitle')
-    # name = title.getText()
-    # print(name)
+    title = driver.find_element_by_id('infotitle').text;
+    # formatting title no spaces allowed
+    title = title.replace("\n",":")
+    title = title.replace(' - ','_')
+    title = title.replace(' ','_')
+    print("Downloading : " + title)
+
     links = driver.find_elements_by_xpath("//a[@href]")
     for epi in links:
         link = epi.get_attribute("href")
@@ -95,7 +98,7 @@ for ep in eps:
                 wait = WebDriverWait(driver, 200)
                 code = wait.until(EC.presence_of_element_located((By.ID, "dcopy"))).get_attribute("value")
                 print(code)
-                cs1 = 'dc.bat '+name+'_Ep-'+str(episode)+' '+code;
+                cs1 = 'dc.bat '+title+' '+code;
                 print(repr(cs1))
                 subprocess.Popen(['cmd','/K',cs1])
                 episode = episode + 1
