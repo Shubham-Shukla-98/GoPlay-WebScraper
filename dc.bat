@@ -3,7 +3,7 @@ set filename=%1
 cls
 set dcode=%2
 cls
-md Doctors
+md Downloads
 cls
 goto downloadmkv
 
