@@ -10,9 +10,9 @@ import time
 #####################################################################
 
 # no spaces in name
-name = 'Prison_Playbook'
+name = 'Youth_Of_May'
 # url of series home page or any episode on goplay streaming
-url = 'https://goplay.anontpp.com/562d323831333336/Prison-Playbook/'
+url = 'https://goplay.anontpp.com/562d333537393938/r2/Youth-of-May/'
 # reddit credentials
 user = 'user'
 passwd = 'pass'
@@ -20,13 +20,15 @@ passwd = 'pass'
 #####################################################################
 
 # webdriver location in same folder
-chrome = "chromedriver.exe";
+chrome = "chromedriver.exe"
 # launch chrome webdriver
 options = webdriver.ChromeOptions()
-#adding ublock origin to block ads
+# adding ublock origin to block ads
 options.add_extension('ublock.crx')
-#adding Https everywhere for better access, some sites don't work without this
+# adding Https everywhere for better access, some sites don't work without this
 options.add_extension('https.crx')
+# adding tunnelbear vpn
+options.add_extension('bear.crx')
 # adding experimental features trying to hide selenium
 options.add_experimental_option("excludeSwitches", ["enable-automation"])
 options.add_experimental_option('useAutomationExtension', False)
@@ -40,7 +42,6 @@ driver = webdriver.Chrome(options=options, executable_path=chrome)
 
 # open website
 driver.get("https://goplay.anontpp.com/?ref=Reddit");
-
 # open token generator site
 driver.find_element_by_xpath("/html/body/center/font[2]/b/a").click();
 # open reddit
@@ -52,7 +53,7 @@ driver.find_element_by_id("loginPassword").send_keys(passwd);
 
 try:
     # submit form
-    driver.find_element_by_xpath("""/html/body/div/div/div[2]/div/form/div[1]/fieldset[5]/button""").click();
+    driver.find_element_by_xpath("""/html/body/div/main/div[1]/div/div[2]/form/fieldset[5]/button""").click();
     # wait for reddit to open authorization page
     wait = WebDriverWait(driver, 10)
     element = wait.until(EC.presence_of_element_located((By.XPATH, """/html/body/div[3]/div/div[2]/form/div/input[1]""")))
