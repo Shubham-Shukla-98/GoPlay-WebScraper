@@ -14,3 +14,5 @@ Pre-requisites:
 Open Sourced:
 
 > Universal Bypass extension
+
+Run crawler.py with mentioned instructions
